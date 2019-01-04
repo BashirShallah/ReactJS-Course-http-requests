@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ViewUser from "./components/ViewUser";
-import {getUsers} from "./Api/Users";
+import {getUsers, deleteUser} from "./Api/Users";
 
 class App extends Component {
 
@@ -15,11 +15,29 @@ class App extends Component {
       this.setState({
         users: response.data
       });
+    })
+    .catch(error=>{
+      alert('حدث خطأ غير معروف');
     });
   }
 
   setActive = (user) => {
     this.setState({'user': user});
+  }
+
+  deleteUser = (user) => {
+    // delete from server
+    deleteUser(user.id)
+      .then(()=>{
+        // delete from state
+        let users = this.state.users;
+        const index = users.indexOf(user);
+        users.splice(index, 1);
+        this.setState({users});
+      })
+      .catch(error=>{
+        alert('حدث خطأ غير معروف');
+      });
   }
 
   render() {
@@ -30,6 +48,7 @@ class App extends Component {
             <li key={user.id}>
               {user.name} {' '}
               <button onClick={()=>this.setActive(user)}>View</button>
+              <button onClick={()=>this.deleteUser(user)}>Delete</button>
             </li>
           )}
         </ul>
