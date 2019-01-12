@@ -5,7 +5,7 @@ import * as Yup from "yup";
 export default function UsersForm(props){
     const schema = Yup.object().shape({
         name: Yup.string().required(),
-        email: Yup.string().required()
+        email: Yup.string().email().required()
     });
 
     return <Formik 
