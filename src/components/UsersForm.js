@@ -15,13 +15,13 @@ export default function UsersForm(props){
         validationSchema={schema}
         render={props=>{
             return <Form>
-                <label>Name</label>
+                <label>Name : </label>
                 <Field name="name" />
-                <ErrorMessage name="name" />
+                <ErrorMessage name="name" /><br/>
 
-                <label>Email</label>
+                <label>Email : </label>
                 <Field name="email" />
-                <ErrorMessage name="email" />
+                <ErrorMessage name="email" /><br/>
 
                 <button type="submit">Send</button>
             </Form>
