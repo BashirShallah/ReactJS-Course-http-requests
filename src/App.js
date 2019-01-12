@@ -98,7 +98,6 @@ class App extends Component {
               email: ''
             }} 
             onSubmit={this.addUser}/>
-          }
         </div>
       </div>
     );
